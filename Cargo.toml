@@ -1,0 +1,11 @@
+[package]
+name = "mdbook-dtmo"
+version = "0.1.0"
+authors = ["Jan-Erik Rediger <janerik@fnordig.de>"]
+
+[dependencies]
+mdbook = "0.1.8"
+env_logger = "0.5.10"
+clap = "2.32.0"
+mdbook-toc = { path = "../mdbook-toc" }
+mdbook-mermaid = { git = "https://github.com/badboy/mdbook-mermaid" }
