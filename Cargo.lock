@@ -492,7 +492,7 @@ dependencies = [
  "env_logger 0.5.10 (registry+https://github.com/rust-lang/crates.io-index)",
  "mdbook 0.1.8 (registry+https://github.com/rust-lang/crates.io-index)",
  "mdbook-mermaid 0.1.0 (git+https://github.com/badboy/mdbook-mermaid)",
- "mdbook-toc 0.1.0",
+ "mdbook-toc 0.1.0 (git+https://github.com/badboy/mdbook-toc)",
 ]
 
 [[package]]
@@ -511,6 +511,7 @@ dependencies = [
 [[package]]
 name = "mdbook-toc"
 version = "0.1.0"
+source = "git+https://github.com/badboy/mdbook-toc#c4ca74d1b6a238d899df77a45dc6f4f38b8fc3a2"
 dependencies = [
  "clap 2.32.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "env_logger 0.5.10 (registry+https://github.com/rust-lang/crates.io-index)",
@@ -1406,6 +1407,7 @@ dependencies = [
 "checksum matches 0.1.7 (registry+https://github.com/rust-lang/crates.io-index)" = "835511bab37c34c47da5cb44844bea2cfde0236db0b506f90ea4224482c9774a"
 "checksum mdbook 0.1.8 (registry+https://github.com/rust-lang/crates.io-index)" = "b55b93934e73452acf4f6335c2bd1018789e5409d38a6704906bb91b4a3d83a4"
 "checksum mdbook-mermaid 0.1.0 (git+https://github.com/badboy/mdbook-mermaid)" = "<none>"
+"checksum mdbook-toc 0.1.0 (git+https://github.com/badboy/mdbook-toc)" = "<none>"
 "checksum memchr 2.0.1 (registry+https://github.com/rust-lang/crates.io-index)" = "796fba70e76612589ed2ce7f45282f5af869e0fdd7cc6199fa1aa1f1d591ba9d"
 "checksum mime 0.2.6 (registry+https://github.com/rust-lang/crates.io-index)" = "ba626b8a6de5da682e1caa06bdb42a335aee5a84db8e5046a3e8ab17ba0a3ae0"
 "checksum mime_guess 1.8.6 (registry+https://github.com/rust-lang/crates.io-index)" = "2d4c0961143b8efdcfa29c3ae63281601b446a4a668165454b6c90f8024954c5"

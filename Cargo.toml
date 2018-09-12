@@ -7,5 +7,5 @@ authors = ["Jan-Erik Rediger <janerik@fnordig.de>"]
 mdbook = "0.1.8"
 env_logger = "0.5.10"
 clap = "2.32.0"
-mdbook-toc = { path = "../mdbook-toc" }
+mdbook-toc = { git = "https://github.com/badboy/mdbook-toc" }
 mdbook-mermaid = { git = "https://github.com/badboy/mdbook-mermaid" }
