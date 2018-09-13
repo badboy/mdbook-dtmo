@@ -1,0 +1,67 @@
+# Based on the "trust" template v0.1.2
+# https://github.com/japaric/trust/tree/v0.1.2
+
+dist: trusty
+language: rust
+services: docker
+sudo: required
+
+env:
+  global:
+    - CRATE_NAME=mdbook-dtmo
+
+matrix:
+  include:
+    # Linux
+    - env: TARGET=i686-unknown-linux-gnu
+    - env: TARGET=x86_64-unknown-linux-gnu
+
+    # OSX
+    - env: TARGET=i686-apple-darwin
+      os: osx
+    - env: TARGET=x86_64-apple-darwin
+      os: osx
+
+    # Windows
+    - env: TARGET=x86_64-pc-windows-gnu
+
+before_install:
+  - set -e
+  - rustup self update
+
+install:
+  - sh ci/install.sh
+  - source ~/.cargo/env || true
+
+script:
+  - bash ci/script.sh
+
+after_script: set +e
+
+before_deploy:
+  - sh ci/before_deploy.sh
+
+deploy:
+  api_key:
+    secure: "NVimZNG+uvjVNRUjjmODgn+4xpnspfB0rvokf6gcanbhYf+lL3BmgoVjh4KokZ5Pps5uoZAjjyFPZtQHHZm5q/bozWMZsqmesIFgp07bltdfsS29+Kj4lRv5w6So0X11TXyEczrJ+Yiswis2H2ECdalLBJSDQFbwYTpJaHn8lD/RpIlJWz/hpsC/P9MiB9gOLAvcMWYH/cmpGuZ3P+xILTNbMDIXtDN3vrvwGmKbHjj2wYTxq0+UuQKfWpoabuH8L01Q3xsmG8uZUbqj+1ixxNGUmlJE9to/sbwmm9frRTVZHYDZky552TJKRulbK9tFbVFKwAWac+4ZZYVywQLfLomVwMQqeQBnXnwlpkhv0ulcJGTsRa+x3sP+ed4HZw5Mt7Nxb25qA3BJGXXp2SB3WLuD+m2Sq/6O5RmxJ4oYPXYtqOM7ZxcNI+g0IP4lFaBMHEkolDgLXp0DN7OXLQ56Uu8X0BR+omQEj8eGStc0/WAph/YYsxZJolyJtMFB7zl16VMKbhTG1W53A7GGS/Yg1V1bcD4JLRUM6e43Ny6MzVhS4er5INQo8ByRZGc4yffdXu57e9/z7pfE+jZ6LWG3kOF4A/O63EGAyqmbKOAQhsIVwM3pIu6N1rNetrcJlYdJcSzm7jrZhQtsEhsua/0nQF25CWYQm7rpAg1TrGdVtuc="
+  file_glob: true
+  file: $CRATE_NAME-$TRAVIS_TAG-$TARGET.*
+  on:
+    condition: $TRAVIS_RUST_VERSION = stable
+    tags: true
+  provider: releases
+  skip_cleanup: true
+
+cache: cargo
+before_cache:
+  # Travis can't cache files that are not readable by "others"
+  - chmod -R a+r $HOME/.cargo
+
+branches:
+  only:
+    # release tags
+    - /^\d+\.\d+\.\d+.*$/
+    - master
+
+notifications:
+  email: false
