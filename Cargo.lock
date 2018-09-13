@@ -513,7 +513,7 @@ dependencies = [
 [[package]]
 name = "mdbook-mermaid"
 version = "0.1.0"
-source = "git+https://github.com/badboy/mdbook-mermaid#412fff7ccc3670f6d079bdebe5f0e2f2c771b252"
+source = "git+https://github.com/badboy/mdbook-mermaid#9499caa07b8441f51c20eadfa87592641c0e4ea9"
 dependencies = [
  "clap 2.32.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "env_logger 0.5.13 (registry+https://github.com/rust-lang/crates.io-index)",
@@ -526,7 +526,7 @@ dependencies = [
 [[package]]
 name = "mdbook-toc"
 version = "0.1.0"
-source = "git+https://github.com/badboy/mdbook-toc#fb003e9e5ec7f07a514e4ad49143fe5064b7f680"
+source = "git+https://github.com/badboy/mdbook-toc#c87fdf7e3e74cf341adfaedd62423ee145796bac"
 dependencies = [
  "clap 2.32.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "env_logger 0.5.13 (registry+https://github.com/rust-lang/crates.io-index)",
