@@ -6,6 +6,8 @@ use mdbook::errors::Result;
 use mdbook::utils;
 use mdbook::MDBook;
 use mdbook_mermaid::Mermaid;
+use mdbook_toc::Toc;
+use std::path::Path;
 use std::sync::mpsc::channel;
 use std::time::Duration;
 use {get_book_dir, open};
@@ -26,16 +28,22 @@ pub fn make_subcommand<'a, 'b>() -> App<'a, 'b> {
 // Watch command implementation
 pub fn execute(args: &ArgMatches) -> Result<()> {
     let book_dir = get_book_dir(args);
-    let book = MDBook::load(&book_dir)?;
+    let mut book = MDBook::load(&book_dir)?;
 
     if args.is_present("open") {
+        book.with_preprecessor(Mermaid);
+        book.with_preprecessor(Toc);
         book.build()?;
         open(book.build_dir_for("html").join("index.html"));
     }
 
     trigger_on_change(&book, |path, book_dir| {
         info!("File changed: {:?}\nBuilding book...\n", path);
-        let result = MDBook::load(&book_dir).and_then(|b| b.build());
+        let result = MDBook::load(&book_dir).and_then(|mut book| {
+            book.with_preprecessor(Mermaid);
+            book.with_preprecessor(Toc);
+            book.build()
+        });
 
         if let Err(e) = result {
             error!("Unable to build the book");

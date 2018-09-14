@@ -10,6 +10,8 @@ use clap::{App, Arg, ArgMatches, SubCommand};
 use mdbook::errors::*;
 use mdbook::utils;
 use mdbook::MDBook;
+use mdbook_mermaid::Mermaid;
+use mdbook_toc::Toc;
 use std;
 use {get_book_dir, open};
 
@@ -87,6 +89,9 @@ pub fn execute(args: &ArgMatches) -> Result<()> {
     if let Some(dest_dir) = args.value_of("dest-dir") {
         book.config.build.build_dir = dest_dir.into();
     }
+
+    book.with_preprecessor(Mermaid);
+    book.with_preprecessor(Toc);
     book.build()?;
 
     let mut chain = Chain::new(staticfile::Static::new(book.build_dir_for("html")));

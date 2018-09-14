@@ -1,6 +1,8 @@
 use clap::{App, ArgMatches, SubCommand};
 use mdbook::errors::Result;
 use mdbook::MDBook;
+use mdbook_mermaid::Mermaid;
+use mdbook_toc::Toc;
 use {get_book_dir, open};
 
 // Create clap subcommand arguments
@@ -25,6 +27,8 @@ pub fn execute(args: &ArgMatches) -> Result<()> {
         book.config.build.build_dir = dest_dir.into();
     }
 
+    book.with_preprecessor(Mermaid);
+    book.with_preprecessor(Toc);
     book.build()?;
 
     if args.is_present("open") {
