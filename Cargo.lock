@@ -503,11 +503,18 @@ dependencies = [
 name = "mdbook-dtmo"
 version = "0.2.0"
 dependencies = [
+ "chrono 0.4.6 (registry+https://github.com/rust-lang/crates.io-index)",
  "clap 2.32.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "env_logger 0.5.13 (registry+https://github.com/rust-lang/crates.io-index)",
+ "iron 0.6.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "log 0.4.5 (registry+https://github.com/rust-lang/crates.io-index)",
  "mdbook 0.2.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "mdbook-mermaid 0.1.0 (git+https://github.com/badboy/mdbook-mermaid)",
  "mdbook-toc 0.1.0 (git+https://github.com/badboy/mdbook-toc)",
+ "notify 4.0.6 (registry+https://github.com/rust-lang/crates.io-index)",
+ "open 1.2.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "staticfile 0.5.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "ws 0.7.8 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
