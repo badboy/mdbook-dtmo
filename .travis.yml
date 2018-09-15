@@ -10,18 +10,6 @@ env:
   global:
     - CRATE_NAME=mdbook-dtmo
 
-matrix:
-  include:
-    # Linux
-    - env: TARGET=i686-unknown-linux-gnu
-    - env: TARGET=x86_64-unknown-linux-gnu
-
-    # OSX
-    - env: TARGET=i686-apple-darwin
-      os: osx
-    - env: TARGET=x86_64-apple-darwin
-      os: osx
-
 before_install:
   - set -e
   - rustup self update
@@ -29,9 +17,6 @@ before_install:
 install:
   - sh ci/install.sh
   - source ~/.cargo/env || true
-
-script:
-  - bash ci/script.sh
 
 after_script: set +e
 
@@ -41,6 +26,24 @@ before_deploy:
 jobs:
   include:
     - stage: test
+      env: TARGET=i686-unknown-linux-gnu
+      script: bash ci/script.sh
+
+    - stage: test
+      env: TARGET=x86_64-unknown-linux-gnu
+      script: bash ci/script.sh
+
+    # OSX
+    - stage: test
+      env: TARGET=i686-apple-darwin
+      os: osx
+      script: bash ci/script.sh
+
+    - stage: test
+      env: TARGET=x86_64-apple-darwin
+      os: osx
+      script: bash ci/script.sh
+
     - stage: deploy
       script: skip
       deploy:
