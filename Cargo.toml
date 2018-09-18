@@ -2,6 +2,8 @@
 name = "mdbook-dtmo"
 version = "0.2.0"
 authors = ["Jan-Erik Rediger <janerik@fnordig.de>"]
+# Don't publish it to crates.io
+publish = false
 
 [dependencies]
 clap = "2.32.0"
