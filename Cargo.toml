@@ -11,7 +11,7 @@ chrono = "0.4"
 env_logger = "0.5.10"
 iron = "0.6.0"
 log = "0.4.5"
-mdbook = { "git" = "https://github.com/rust-lang-nursery/mdBook" }
+mdbook = { git = "https://github.com/badboy/mdBook", branch = "fix-section-numbering" }
 open = "1.2.2"
 staticfile = "0.5.0"
 ws = "0.7.8"
@@ -19,8 +19,6 @@ notify = "4.0"
 
 [dependencies.mdbook-mermaid]
 git = "https://github.com/badboy/mdbook-mermaid"
-branch = "mdbook-alpha"
 
 [dependencies.mdbook-toc]
 git = "https://github.com/badboy/mdbook-toc"
-branch = "mdbook-alpha"
