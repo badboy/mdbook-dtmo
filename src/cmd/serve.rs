@@ -126,6 +126,8 @@ pub fn execute(args: &ArgMatches) -> Result<()> {
             .and_then(|mut b| {
                 b.config
                     .set("output.html.livereload-url", &livereload_url)?;
+                b.with_preprecessor(Mermaid);
+                b.with_preprecessor(Toc);
                 Ok(b)
             }).and_then(|b| b.build());
 
