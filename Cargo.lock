@@ -533,7 +533,7 @@ dependencies = [
 [[package]]
 name = "mdbook-toc"
 version = "0.1.0"
-source = "git+https://github.com/badboy/mdbook-toc#dfd8d5de5151b344e38cb363d110fda36d698672"
+source = "git+https://github.com/badboy/mdbook-toc#8c2a8c2d5c05b012e14f66208781738ea5b0400a"
 dependencies = [
  "clap 2.32.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "env_logger 0.5.13 (registry+https://github.com/rust-lang/crates.io-index)",
