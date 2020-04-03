@@ -669,7 +669,7 @@ dependencies = [
  "log 0.4.8 (registry+https://github.com/rust-lang/crates.io-index)",
  "mdbook 0.3.6 (registry+https://github.com/rust-lang/crates.io-index)",
  "mdbook-mermaid 0.2.2 (registry+https://github.com/rust-lang/crates.io-index)",
- "mdbook-open-on-gh 1.0.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "mdbook-open-on-gh 1.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "mdbook-toc 0.2.2 (registry+https://github.com/rust-lang/crates.io-index)",
  "notify 4.0.15 (registry+https://github.com/rust-lang/crates.io-index)",
  "open 1.4.0 (registry+https://github.com/rust-lang/crates.io-index)",
@@ -693,11 +693,11 @@ dependencies = [
 
 [[package]]
 name = "mdbook-open-on-gh"
-version = "1.0.1"
+version = "1.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
  "clap 2.33.0 (registry+https://github.com/rust-lang/crates.io-index)",
- "env_logger 0.6.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "env_logger 0.7.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "log 0.4.8 (registry+https://github.com/rust-lang/crates.io-index)",
  "mdbook 0.3.6 (registry+https://github.com/rust-lang/crates.io-index)",
  "serde_json 1.0.50 (registry+https://github.com/rust-lang/crates.io-index)",
@@ -1807,7 +1807,7 @@ dependencies = [
 "checksum matches 0.1.8 (registry+https://github.com/rust-lang/crates.io-index)" = "7ffc5c5338469d4d3ea17d269fa8ea3512ad247247c30bd2df69e68309ed0a08"
 "checksum mdbook 0.3.6 (registry+https://github.com/rust-lang/crates.io-index)" = "32a513d86f2275e5e9130a9a2cba2877ad29c3a997720b91b1c3789fc35a3549"
 "checksum mdbook-mermaid 0.2.2 (registry+https://github.com/rust-lang/crates.io-index)" = "20d4b6f793eb4ca55e461c2035597d307058c7fbf5c930f2902d856581dc72f7"
-"checksum mdbook-open-on-gh 1.0.1 (registry+https://github.com/rust-lang/crates.io-index)" = "47d6a9e78ad2622bd2c44be6e7e1e41220a5ae6436d5d4cae70ea4e4c9bceb0f"
+"checksum mdbook-open-on-gh 1.1.0 (registry+https://github.com/rust-lang/crates.io-index)" = "61afa973e9be880665875251426c6b98d20282f1316b9787cb2b2dc395286ec0"
 "checksum mdbook-toc 0.2.2 (registry+https://github.com/rust-lang/crates.io-index)" = "a1d44c50a309378b7d19d83db5535017c16471f5c8dc6d3441c981369933a34e"
 "checksum memchr 2.3.3 (registry+https://github.com/rust-lang/crates.io-index)" = "3728d817d99e5ac407411fa471ff9800a778d88a24685968b36824eaf4bee400"
 "checksum mime 0.2.6 (registry+https://github.com/rust-lang/crates.io-index)" = "ba626b8a6de5da682e1caa06bdb42a335aee5a84db8e5046a3e8ab17ba0a3ae0"

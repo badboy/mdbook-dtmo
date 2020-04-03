@@ -14,7 +14,7 @@ open = "1.4.0"
 
 mdbook-mermaid = "0.2.2"
 mdbook-toc = "0.2.2"
-mdbook-open-on-gh = "1.0.1"
+mdbook-open-on-gh = "1.1.0"
 
 # Watch feature
 notify = { version = "4.0", optional = true }
