@@ -1,16 +1,5 @@
-extern crate chrono;
-#[macro_use]
-extern crate clap;
-extern crate env_logger;
-#[macro_use]
-extern crate log;
-extern crate mdbook;
-extern crate mdbook_mermaid;
-extern crate mdbook_toc;
-extern crate open;
-
 use chrono::Local;
-use clap::{App, AppSettings, ArgMatches};
+use clap::{App, AppSettings, ArgMatches, crate_version};
 use env_logger::Builder;
 use log::LevelFilter;
 use mdbook::utils;
@@ -26,38 +15,45 @@ const VERSION: &'static str = concat!("v", crate_version!());
 
 fn main() {
     init_logger();
-    //
-    // Create a list of valid arguments and sub-commands
+
     let app = App::new(NAME)
         .about("Creates a book from markdown files with added plugins")
         .author("Jan-Erik Rediger <jrediger@mozilla.com>")
         .version(VERSION)
         .setting(AppSettings::GlobalVersion)
         .setting(AppSettings::ArgRequiredElseHelp)
+        .setting(AppSettings::ColoredHelp)
         .after_help(
             "For more information about a specific command, try `mdbook-dtmo <command> --help`\n\
              The source code for mdBook is available at: https://github.com/badboy/mdbook-dtmo",
         )
         .subcommand(cmd::init::make_subcommand())
         .subcommand(cmd::build::make_subcommand())
-        .subcommand(cmd::clean::make_subcommand())
-        .subcommand(cmd::watch::make_subcommand())
-        .subcommand(cmd::serve::make_subcommand());
+        .subcommand(cmd::test::make_subcommand())
+        .subcommand(cmd::clean::make_subcommand());
+
+    #[cfg(feature = "watch")]
+    let app = app.subcommand(cmd::watch::make_subcommand());
+    #[cfg(feature = "serve")]
+    let app = app.subcommand(cmd::serve::make_subcommand());
 
     // Check which subcomamnd the user ran...
     let res = match app.get_matches().subcommand() {
         ("init", Some(sub_matches)) => cmd::init::execute(sub_matches),
         ("build", Some(sub_matches)) => cmd::build::execute(sub_matches),
         ("clean", Some(sub_matches)) => cmd::clean::execute(sub_matches),
+        #[cfg(feature = "watch")]
         ("watch", Some(sub_matches)) => cmd::watch::execute(sub_matches),
+        #[cfg(feature = "serve")]
         ("serve", Some(sub_matches)) => cmd::serve::execute(sub_matches),
+        ("test", Some(sub_matches)) => cmd::test::execute(sub_matches),
         (_, _) => unreachable!(),
     };
 
     if let Err(e) = res {
         utils::log_backtrace(&e);
 
-        ::std::process::exit(101);
+        std::process::exit(101);
     }
 }
 
@@ -76,7 +72,7 @@ fn init_logger() {
     });
 
     if let Ok(var) = env::var("RUST_LOG") {
-        builder.parse(&var);
+        builder.parse_filters(&var);
     } else {
         // if no RUST_LOG provided, default to logging at the Info level
         builder.filter(None, LevelFilter::Info);
@@ -103,18 +99,6 @@ fn get_book_dir(args: &ArgMatches) -> PathBuf {
 
 fn open<P: AsRef<OsStr>>(path: P) {
     if let Err(e) = open::that(path) {
-        error!("Error opening web browser: {}", e);
+        log::error!("Error opening web browser: {}", e);
     }
-}
-
-pub fn make_app<'a, 'b>() -> App<'a, 'b> {
-    App::new("mdbook-dtmo")
-        .about("Build the book from the markdown files for dtmo")
-        .arg_from_usage(
-            "-d, --dest-dir=[dest-dir] 'The output directory for your book{n}(Defaults to ./book \
-             when omitted)'",
-        )
-        .arg_from_usage(
-            "[dir] 'A directory for your book{n}(Defaults to Current Directory when omitted)'",
-        )
 }

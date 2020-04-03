@@ -1,12 +1,12 @@
-use crate::{get_book_dir, open};
-use clap::{App, ArgMatches, SubCommand};
+use crate::get_book_dir;
+use clap::{App, Arg, ArgMatches, SubCommand};
 use mdbook::errors::Result;
 use mdbook::MDBook;
 
 // Create clap subcommand arguments
 pub fn make_subcommand<'a, 'b>() -> App<'a, 'b> {
-    SubCommand::with_name("build")
-        .about("Builds a book from its markdown files")
+    SubCommand::with_name("test")
+        .about("Tests that a book's Rust code samples compile")
         .arg_from_usage(
             "-d, --dest-dir=[dest-dir] 'Output directory for the book{n}\
              Relative paths are interpreted relative to the book's root directory.{n}\
@@ -16,11 +16,23 @@ pub fn make_subcommand<'a, 'b>() -> App<'a, 'b> {
             "[dir] 'Root directory for the book{n}\
              (Defaults to the Current Directory when omitted)'",
         )
-        .arg_from_usage("-o, --open 'Opens the compiled book in a web browser'")
+        .arg(Arg::with_name("library-path")
+            .short("L")
+            .long("library-path")
+            .value_name("dir")
+            .takes_value(true)
+            .require_delimiter(true)
+            .multiple(true)
+            .empty_values(false)
+            .help("A comma-separated list of directories to add to {n}the crate search path when building tests"))
 }
 
-// Build command implementation
+// test command implementation
 pub fn execute(args: &ArgMatches) -> Result<()> {
+    let library_paths: Vec<&str> = args
+        .values_of("library-path")
+        .map(std::iter::Iterator::collect)
+        .unwrap_or_default();
     let book_dir = get_book_dir(args);
     let mut book = MDBook::load(&book_dir)?;
 
@@ -28,12 +40,7 @@ pub fn execute(args: &ArgMatches) -> Result<()> {
         book.config.build.build_dir = dest_dir.into();
     }
 
-    book.build()?;
-
-    if args.is_present("open") {
-        // FIXME: What's the right behaviour if we don't use the HTML renderer?
-        open(book.build_dir_for("html").join("index.html"));
-    }
+    book.test(library_paths)?;
 
     Ok(())
 }

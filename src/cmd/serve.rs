@@ -1,21 +1,17 @@
-extern crate iron;
-extern crate staticfile;
-extern crate ws;
-
-use self::iron::{
-    status, AfterMiddleware, Chain, Iron, IronError, IronResult, Request, Response, Set,
-};
+#[cfg(feature = "watch")]
 use super::watch;
+use crate::{get_book_dir, open};
 use clap::{App, Arg, ArgMatches, SubCommand};
+use iron::headers;
+use iron::{status, AfterMiddleware, Chain, Iron, IronError, IronResult, Request, Response, Set};
+use log::{error, info};
 use mdbook::errors::*;
 use mdbook::utils;
 use mdbook::MDBook;
-use mdbook_mermaid::Mermaid;
-use mdbook_toc::Toc;
-use std;
-use {get_book_dir, open};
 
 struct ErrorRecover;
+
+struct NoCache;
 
 // Create clap subcommand arguments
 pub fn make_subcommand<'a, 'b>() -> App<'a, 'b> {
@@ -23,7 +19,8 @@ pub fn make_subcommand<'a, 'b>() -> App<'a, 'b> {
         .about("Serves a book at http://localhost:3000, and rebuilds it on changes")
         .arg_from_usage(
             "-d, --dest-dir=[dest-dir] 'Output directory for the book{n}\
-             (If omitted, uses build.build-dir from book.toml or defaults to ./book)'",
+             Relative paths are interpreted relative to the book's root directory.{n}\
+             If omitted, mdBook uses build.build-dir from book.toml or defaults to `./book`.'",
         )
         .arg_from_usage(
             "[dir] 'Root directory for the book{n}\
@@ -76,7 +73,7 @@ pub fn execute(args: &ArgMatches) -> Result<()> {
     let port = args.value_of("port").unwrap();
     let ws_port = args.value_of("websocket-port").unwrap();
     let hostname = args.value_of("hostname").unwrap();
-    let public_address = args.value_of("websocket-address").unwrap_or(hostname);
+    let public_address = args.value_of("websocket-hostname").unwrap_or(hostname);
     let open_browser = args.is_present("open");
 
     let address = format!("{}:{}", hostname, port);
@@ -90,11 +87,10 @@ pub fn execute(args: &ArgMatches) -> Result<()> {
         book.config.build.build_dir = dest_dir.into();
     }
 
-    book.with_preprecessor(Mermaid);
-    book.with_preprecessor(Toc);
     book.build()?;
 
     let mut chain = Chain::new(staticfile::Static::new(book.build_dir_for("html")));
+    chain.link_after(NoCache);
     chain.link_after(ErrorRecover);
     let _iron = Iron::new(chain)
         .http(&*address)
@@ -116,8 +112,9 @@ pub fn execute(args: &ArgMatches) -> Result<()> {
         open(serving_url);
     }
 
-    watch::trigger_on_change(&mut book, move |path, book_dir| {
-        info!("File changed: {:?}", path);
+    #[cfg(feature = "watch")]
+    watch::trigger_on_change(&book, move |paths, book_dir| {
+        info!("Files changed: {:?}", paths);
         info!("Building book...");
 
         // FIXME: This area is really ugly because we need to re-set livereload :(
@@ -126,10 +123,9 @@ pub fn execute(args: &ArgMatches) -> Result<()> {
             .and_then(|mut b| {
                 b.config
                     .set("output.html.livereload-url", &livereload_url)?;
-                b.with_preprecessor(Mermaid);
-                b.with_preprecessor(Toc);
                 Ok(b)
-            }).and_then(|b| b.build());
+            })
+            .and_then(|b| b.build());
 
         if let Err(e) = result {
             error!("Unable to load the book");
@@ -140,6 +136,17 @@ pub fn execute(args: &ArgMatches) -> Result<()> {
     });
 
     Ok(())
+}
+
+impl AfterMiddleware for NoCache {
+    fn after(&self, _: &mut Request, mut res: Response) -> IronResult<Response> {
+        res.headers.set(headers::CacheControl(vec![
+            headers::CacheDirective::NoStore,
+            headers::CacheDirective::MaxAge(0u32),
+        ]));
+
+        Ok(res)
+    }
 }
 
 impl AfterMiddleware for ErrorRecover {
