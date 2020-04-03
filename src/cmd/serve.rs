@@ -8,6 +8,9 @@ use log::{error, info};
 use mdbook::errors::*;
 use mdbook::utils;
 use mdbook::MDBook;
+use mdbook_mermaid::Mermaid;
+use mdbook_toc::Toc;
+use mdbook_open_on_gh::OpenOn;
 
 struct ErrorRecover;
 
@@ -87,6 +90,9 @@ pub fn execute(args: &ArgMatches) -> Result<()> {
         book.config.build.build_dir = dest_dir.into();
     }
 
+    book.with_preprocessor(Mermaid);
+    book.with_preprocessor(Toc);
+    book.with_preprocessor(OpenOn);
     book.build()?;
 
     let mut chain = Chain::new(staticfile::Static::new(book.build_dir_for("html")));
@@ -123,6 +129,9 @@ pub fn execute(args: &ArgMatches) -> Result<()> {
             .and_then(|mut b| {
                 b.config
                     .set("output.html.livereload-url", &livereload_url)?;
+                b.with_preprocessor(Mermaid);
+                b.with_preprocessor(Toc);
+                b.with_preprocessor(OpenOn);
                 Ok(b)
             })
             .and_then(|b| b.build());

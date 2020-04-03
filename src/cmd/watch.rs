@@ -9,6 +9,9 @@ use std::path::{Path, PathBuf};
 use std::sync::mpsc::channel;
 use std::thread::sleep;
 use std::time::Duration;
+use mdbook_mermaid::Mermaid;
+use mdbook_toc::Toc;
+use mdbook_open_on_gh::OpenOn;
 
 // Create clap subcommand arguments
 pub fn make_subcommand<'a, 'b>() -> App<'a, 'b> {
@@ -29,16 +32,24 @@ pub fn make_subcommand<'a, 'b>() -> App<'a, 'b> {
 // Watch command implementation
 pub fn execute(args: &ArgMatches) -> Result<()> {
     let book_dir = get_book_dir(args);
-    let book = MDBook::load(&book_dir)?;
+    let mut book = MDBook::load(&book_dir)?;
 
     if args.is_present("open") {
+        book.with_preprocessor(Mermaid);
+        book.with_preprocessor(Toc);
+        book.with_preprocessor(OpenOn);
         book.build()?;
         open(book.build_dir_for("html").join("index.html"));
     }
 
     trigger_on_change(&book, |paths, book_dir| {
         info!("Files changed: {:?}\nBuilding book...\n", paths);
-        let result = MDBook::load(&book_dir).and_then(|b| b.build());
+        let result = MDBook::load(&book_dir).and_then(|mut b| {
+            b.with_preprocessor(Mermaid);
+            b.with_preprocessor(Toc);
+            b.with_preprocessor(OpenOn);
+            b.build()
+        });
 
         if let Err(e) = result {
             error!("Unable to build the book");

@@ -2,6 +2,9 @@ use crate::{get_book_dir, open};
 use clap::{App, ArgMatches, SubCommand};
 use mdbook::errors::Result;
 use mdbook::MDBook;
+use mdbook_mermaid::Mermaid;
+use mdbook_toc::Toc;
+use mdbook_open_on_gh::OpenOn;
 
 // Create clap subcommand arguments
 pub fn make_subcommand<'a, 'b>() -> App<'a, 'b> {
@@ -28,6 +31,9 @@ pub fn execute(args: &ArgMatches) -> Result<()> {
         book.config.build.build_dir = dest_dir.into();
     }
 
+    book.with_preprocessor(Mermaid);
+    book.with_preprocessor(Toc);
+    book.with_preprocessor(OpenOn);
     book.build()?;
 
     if args.is_present("open") {
