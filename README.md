@@ -19,10 +19,10 @@ A combination of preprocessors for [mdbook][] to render the [Firefox Data Docume
 
 ## Installation
 
-If you want to use only this preprocessor, install the tool:
+If you want to use this mdbook bundle, install the tool:
 
 ```
-cargo install --git https://github.com/badboy/mdbook-dtmo
+cargo install mdbook-dtmo
 ```
 
 Build the book:
