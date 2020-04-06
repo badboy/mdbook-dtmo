@@ -1,5 +1,5 @@
+use crate::get_book_dir;
 use clap::{App, ArgMatches, SubCommand};
-use get_book_dir;
 use mdbook::errors::*;
 use mdbook::MDBook;
 use std::fs;
@@ -10,15 +10,18 @@ pub fn make_subcommand<'a, 'b>() -> App<'a, 'b> {
         .about("Deletes a built book")
         .arg_from_usage(
             "-d, --dest-dir=[dest-dir] 'Output directory for the book{n}\
-             (If omitted, uses build.build-dir from book.toml or defaults to ./book)'",
-        ).arg_from_usage(
+             Relative paths are interpreted relative to the book's root directory.{n}\
+             Running this command deletes this directory.{n}\
+             If omitted, mdBook uses build.build-dir from book.toml or defaults to `./book`.'",
+        )
+        .arg_from_usage(
             "[dir] 'Root directory for the book{n}\
              (Defaults to the Current Directory when omitted)'",
         )
 }
 
 // Clean command implementation
-pub fn execute(args: &ArgMatches) -> ::mdbook::errors::Result<()> {
+pub fn execute(args: &ArgMatches) -> mdbook::errors::Result<()> {
     let book_dir = get_book_dir(args);
     let book = MDBook::load(&book_dir)?;
 
@@ -26,7 +29,10 @@ pub fn execute(args: &ArgMatches) -> ::mdbook::errors::Result<()> {
         Some(dest_dir) => dest_dir.into(),
         None => book.root.join(&book.config.build.build_dir),
     };
-    fs::remove_dir_all(&dir_to_remove).chain_err(|| "Unable to remove the build directory")?;
+
+    if dir_to_remove.exists() {
+        fs::remove_dir_all(&dir_to_remove).chain_err(|| "Unable to remove the build directory")?;
+    }
 
     Ok(())
 }
