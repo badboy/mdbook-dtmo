@@ -659,7 +659,7 @@ dependencies = [
 
 [[package]]
 name = "mdbook-dtmo"
-version = "0.4.2-alpha.0"
+version = "0.4.2"
 dependencies = [
  "chrono 0.4.11 (registry+https://github.com/rust-lang/crates.io-index)",
  "clap 2.33.0 (registry+https://github.com/rust-lang/crates.io-index)",
