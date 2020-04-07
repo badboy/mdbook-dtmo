@@ -16,10 +16,12 @@ const VERSION: &'static str = concat!("v", crate_version!());
 fn main() {
     init_logger();
 
+    let long_version = format!("{} (based on mdbook {})", VERSION, mdbook::MDBOOK_VERSION);
     let app = App::new(NAME)
         .about("Creates a book from markdown files with added plugins")
         .author("Jan-Erik Rediger <jrediger@mozilla.com>")
         .version(VERSION)
+        .long_version(&*long_version)
         .setting(AppSettings::GlobalVersion)
         .setting(AppSettings::ArgRequiredElseHelp)
         .setting(AppSettings::ColoredHelp)
