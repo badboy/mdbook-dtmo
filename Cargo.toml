@@ -16,8 +16,8 @@ log = "0.4.8"
 mdbook = "0.3.6"
 open = "1.4.0"
 
-mdbook-mermaid = "0.2.3"
-mdbook-toc = "0.2.3"
+mdbook-mermaid = "0.2.4"
+mdbook-toc = "0.2.4"
 mdbook-open-on-gh = "1.1.1"
 
 # Watch feature
