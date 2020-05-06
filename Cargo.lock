@@ -670,7 +670,7 @@ dependencies = [
  "mdbook 0.3.7 (registry+https://github.com/rust-lang/crates.io-index)",
  "mdbook-mermaid 0.3.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "mdbook-open-on-gh 1.1.1 (registry+https://github.com/rust-lang/crates.io-index)",
- "mdbook-toc 0.3.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "mdbook-toc 0.4.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "notify 4.0.15 (registry+https://github.com/rust-lang/crates.io-index)",
  "open 1.4.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "staticfile 0.5.0 (registry+https://github.com/rust-lang/crates.io-index)",
@@ -706,7 +706,7 @@ dependencies = [
 
 [[package]]
 name = "mdbook-toc"
-version = "0.3.0"
+version = "0.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
  "clap 2.33.0 (registry+https://github.com/rust-lang/crates.io-index)",
@@ -1807,7 +1807,7 @@ dependencies = [
 "checksum mdbook 0.3.7 (registry+https://github.com/rust-lang/crates.io-index)" = "e7ec525f7ebccc2dd935c263717250cd37f9a4b264a77c5dbc950ea2734d8159"
 "checksum mdbook-mermaid 0.3.0 (registry+https://github.com/rust-lang/crates.io-index)" = "211a44181f03b87837f49a47b0e4c0b8266047431e90e00042cbf306e6408eaa"
 "checksum mdbook-open-on-gh 1.1.1 (registry+https://github.com/rust-lang/crates.io-index)" = "4a56051d9c4572d53db9989aaacdcb3c2a6de625f2b18a8ca66ad923526afe06"
-"checksum mdbook-toc 0.3.0 (registry+https://github.com/rust-lang/crates.io-index)" = "aeb61d19c1fee480334979de44acb71a60514ca380227497655bb609ac8f4d33"
+"checksum mdbook-toc 0.4.0 (registry+https://github.com/rust-lang/crates.io-index)" = "9456c9f858053fbd808e8ca8eefa0575045a70c4b6b7059ac391b59ae0ec9148"
 "checksum memchr 2.3.3 (registry+https://github.com/rust-lang/crates.io-index)" = "3728d817d99e5ac407411fa471ff9800a778d88a24685968b36824eaf4bee400"
 "checksum mime 0.2.6 (registry+https://github.com/rust-lang/crates.io-index)" = "ba626b8a6de5da682e1caa06bdb42a335aee5a84db8e5046a3e8ab17ba0a3ae0"
 "checksum mime_guess 1.8.8 (registry+https://github.com/rust-lang/crates.io-index)" = "216929a5ee4dd316b1702eedf5e74548c123d370f47841ceaac38ca154690ca3"
