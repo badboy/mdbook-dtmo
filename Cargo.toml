@@ -1,6 +1,6 @@
 [package]
 name = "mdbook-dtmo"
-version = "0.6.1"
+version = "0.6.2-alpha.0"
 authors = ["Jan-Erik Rediger <janerik@fnordig.de>"]
 description = "A combination of preprocessors for mdbook to render the Firefox Data Documentation"
 license = "MPL-2.0"
