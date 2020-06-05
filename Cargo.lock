@@ -690,9 +690,9 @@ dependencies = [
  "iron 0.6.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "log 0.4.8 (registry+https://github.com/rust-lang/crates.io-index)",
  "mdbook 0.3.7 (registry+https://github.com/rust-lang/crates.io-index)",
- "mdbook-mermaid 0.4.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "mdbook-mermaid 0.4.2 (registry+https://github.com/rust-lang/crates.io-index)",
  "mdbook-open-on-gh 1.1.1 (registry+https://github.com/rust-lang/crates.io-index)",
- "mdbook-toc 0.4.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "mdbook-toc 0.4.2 (registry+https://github.com/rust-lang/crates.io-index)",
  "notify 4.0.15 (registry+https://github.com/rust-lang/crates.io-index)",
  "open 1.4.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "staticfile 0.5.0 (registry+https://github.com/rust-lang/crates.io-index)",
@@ -701,7 +701,7 @@ dependencies = [
 
 [[package]]
 name = "mdbook-mermaid"
-version = "0.4.1"
+version = "0.4.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
  "clap 2.33.1 (registry+https://github.com/rust-lang/crates.io-index)",
@@ -709,7 +709,7 @@ dependencies = [
  "log 0.4.8 (registry+https://github.com/rust-lang/crates.io-index)",
  "mdbook 0.3.7 (registry+https://github.com/rust-lang/crates.io-index)",
  "pulldown-cmark 0.7.1 (registry+https://github.com/rust-lang/crates.io-index)",
- "pulldown-cmark-to-cmark 4.0.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "pulldown-cmark-to-cmark 4.0.2 (registry+https://github.com/rust-lang/crates.io-index)",
  "serde_json 1.0.53 (registry+https://github.com/rust-lang/crates.io-index)",
  "toml_edit 0.1.5 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
@@ -729,7 +729,7 @@ dependencies = [
 
 [[package]]
 name = "mdbook-toc"
-version = "0.4.1"
+version = "0.4.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
  "clap 2.33.1 (registry+https://github.com/rust-lang/crates.io-index)",
@@ -737,7 +737,7 @@ dependencies = [
  "log 0.4.8 (registry+https://github.com/rust-lang/crates.io-index)",
  "mdbook 0.3.7 (registry+https://github.com/rust-lang/crates.io-index)",
  "pulldown-cmark 0.7.1 (registry+https://github.com/rust-lang/crates.io-index)",
- "pulldown-cmark-to-cmark 4.0.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "pulldown-cmark-to-cmark 4.0.2 (registry+https://github.com/rust-lang/crates.io-index)",
  "serde_json 1.0.53 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
@@ -1071,7 +1071,7 @@ dependencies = [
 
 [[package]]
 name = "pulldown-cmark-to-cmark"
-version = "4.0.1"
+version = "4.0.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
  "pulldown-cmark 0.7.1 (registry+https://github.com/rust-lang/crates.io-index)",
@@ -1859,9 +1859,9 @@ dependencies = [
 "checksum markup5ever_rcdom 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)" = "f015da43bcd8d4f144559a3423f4591d69b8ce0652c905374da7205df336ae2b"
 "checksum matches 0.1.8 (registry+https://github.com/rust-lang/crates.io-index)" = "7ffc5c5338469d4d3ea17d269fa8ea3512ad247247c30bd2df69e68309ed0a08"
 "checksum mdbook 0.3.7 (registry+https://github.com/rust-lang/crates.io-index)" = "e7ec525f7ebccc2dd935c263717250cd37f9a4b264a77c5dbc950ea2734d8159"
-"checksum mdbook-mermaid 0.4.1 (registry+https://github.com/rust-lang/crates.io-index)" = "02b48e6a20f1fba4115f18a092b3c80ec19e6c51f158e1dc910daf923bda8453"
+"checksum mdbook-mermaid 0.4.2 (registry+https://github.com/rust-lang/crates.io-index)" = "7b53b5ca004e1c400b714c899823429740c296b794af5bef97b8aca0b2aa59bf"
 "checksum mdbook-open-on-gh 1.1.1 (registry+https://github.com/rust-lang/crates.io-index)" = "4a56051d9c4572d53db9989aaacdcb3c2a6de625f2b18a8ca66ad923526afe06"
-"checksum mdbook-toc 0.4.1 (registry+https://github.com/rust-lang/crates.io-index)" = "49891b0c768f2f1bcfedc3060c794e8f6919f1a282dd00be673bf4a4a2569f86"
+"checksum mdbook-toc 0.4.2 (registry+https://github.com/rust-lang/crates.io-index)" = "97b046fc73896dd1cd342ea890deb18b06effb7a31715e2408ee0b891446b83a"
 "checksum memchr 2.3.3 (registry+https://github.com/rust-lang/crates.io-index)" = "3728d817d99e5ac407411fa471ff9800a778d88a24685968b36824eaf4bee400"
 "checksum mime 0.2.6 (registry+https://github.com/rust-lang/crates.io-index)" = "ba626b8a6de5da682e1caa06bdb42a335aee5a84db8e5046a3e8ab17ba0a3ae0"
 "checksum mime_guess 1.8.8 (registry+https://github.com/rust-lang/crates.io-index)" = "216929a5ee4dd316b1702eedf5e74548c123d370f47841ceaac38ca154690ca3"
@@ -1900,7 +1900,7 @@ dependencies = [
 "checksum proc-macro2 1.0.13 (registry+https://github.com/rust-lang/crates.io-index)" = "53f5ffe53a6b28e37c9c1ce74893477864d64f74778a93a4beb43c8fa167f639"
 "checksum pulldown-cmark 0.6.1 (registry+https://github.com/rust-lang/crates.io-index)" = "1c205cc82214f3594e2d50686730314f817c67ffa80fe800cf0db78c3c2b9d9e"
 "checksum pulldown-cmark 0.7.1 (registry+https://github.com/rust-lang/crates.io-index)" = "3e142c3b8f49d2200605ee6ba0b1d757310e9e7a72afe78c36ee2ef67300ee00"
-"checksum pulldown-cmark-to-cmark 4.0.1 (registry+https://github.com/rust-lang/crates.io-index)" = "3b4d8d4a8ba6196543f202112fc5d77d36bf082bae5823c9707cf48f20bc436f"
+"checksum pulldown-cmark-to-cmark 4.0.2 (registry+https://github.com/rust-lang/crates.io-index)" = "cffb594e453d29e238ac190362a4a291daec00396717a8d1670863121ac56958"
 "checksum quick-error 1.2.3 (registry+https://github.com/rust-lang/crates.io-index)" = "a1d01941d82fa2ab50be1e79e6714289dd7cde78eba4c074bc5a4374f650dfe0"
 "checksum quote 0.6.13 (registry+https://github.com/rust-lang/crates.io-index)" = "6ce23b6b870e8f94f81fb0a363d65d86675884b34a09043c81e5562f11c1f8e1"
 "checksum quote 1.0.6 (registry+https://github.com/rust-lang/crates.io-index)" = "54a21852a652ad6f610c9510194f398ff6f8692e334fd1145fed931f7fbe44ea"
