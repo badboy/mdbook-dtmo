@@ -12,12 +12,12 @@ edition = "2018"
 clap = "2.33.0"
 chrono = "0.4.11"
 env_logger = "0.7.1"
-log = "0.4.8"
-mdbook = "0.3.6"
+log = "0.4.11"
+mdbook = "0.4.3"
 open = "1.4.0"
 
 mdbook-mermaid = "0.5.0"
-mdbook-toc = "0.4.3"
+mdbook-toc = "0.5.0"
 mdbook-open-on-gh = "1.2.0"
 
 # Watch feature
