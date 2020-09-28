@@ -1,5 +1,10 @@
+#[macro_use]
+extern crate clap;
+#[macro_use]
+extern crate log;
+
 use chrono::Local;
-use clap::{App, AppSettings, ArgMatches, crate_version};
+use clap::{App, AppSettings, ArgMatches};
 use env_logger::Builder;
 use log::LevelFilter;
 use mdbook::utils;
@@ -10,15 +15,17 @@ use std::path::{Path, PathBuf};
 
 mod cmd;
 
-const NAME: &'static str = "mdbook-dtmo";
-const VERSION: &'static str = concat!("v", crate_version!());
+const NAME: &str = "mdbook-dtmo";
+const VERSION: &str = concat!("v", crate_version!());
 
 fn main() {
     init_logger();
 
+    // Create a list of valid arguments and sub-commands
     let long_version = format!("{} (based on mdbook {})", VERSION, mdbook::MDBOOK_VERSION);
     let app = App::new(NAME)
         .about("Creates a book from markdown files with added plugins")
+        .about(crate_description!())
         .author("Jan-Erik Rediger <jrediger@mozilla.com>")
         .version(VERSION)
         .long_version(&*long_version)
@@ -101,6 +108,6 @@ fn get_book_dir(args: &ArgMatches) -> PathBuf {
 
 fn open<P: AsRef<OsStr>>(path: P) {
     if let Err(e) = open::that(path) {
-        log::error!("Error opening web browser: {}", e);
+        error!("Error opening web browser: {}", e);
     }
 }

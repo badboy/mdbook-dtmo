@@ -1,6 +1,5 @@
 use crate::{get_book_dir, open};
 use clap::{App, ArgMatches, SubCommand};
-use log::{error, debug, info, warn};
 use mdbook::errors::Result;
 use mdbook::utils;
 use mdbook::MDBook;
@@ -34,6 +33,16 @@ pub fn execute(args: &ArgMatches) -> Result<()> {
     let book_dir = get_book_dir(args);
     let mut book = MDBook::load(&book_dir)?;
 
+    let update_config = |book: &mut MDBook| {
+        if let Some(dest_dir) = args.value_of("dest-dir") {
+            book.config.build.build_dir = dest_dir.into();
+        }
+        book.with_preprocessor(Mermaid);
+        book.with_preprocessor(Toc);
+        book.with_preprocessor(OpenOn);
+    };
+    update_config(&mut book);
+
     if args.is_present("open") {
         book.with_preprocessor(Mermaid);
         book.with_preprocessor(Toc);
@@ -45,9 +54,7 @@ pub fn execute(args: &ArgMatches) -> Result<()> {
     trigger_on_change(&book, |paths, book_dir| {
         info!("Files changed: {:?}\nBuilding book...\n", paths);
         let result = MDBook::load(&book_dir).and_then(|mut b| {
-            b.with_preprocessor(Mermaid);
-            b.with_preprocessor(Toc);
-            b.with_preprocessor(OpenOn);
+            update_config(&mut b);
             b.build()
         });
 
