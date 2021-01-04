@@ -818,7 +818,7 @@ dependencies = [
 
 [[package]]
 name = "mdbook-dtmo"
-version = "0.8.1-alpha.0"
+version = "0.8.1"
 dependencies = [
  "ammonia",
  "anyhow",
