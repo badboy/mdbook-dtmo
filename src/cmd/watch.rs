@@ -8,9 +8,10 @@ use std::path::{Path, PathBuf};
 use std::sync::mpsc::channel;
 use std::thread::sleep;
 use std::time::Duration;
+
 use mdbook_mermaid::Mermaid;
-use mdbook_toc::Toc;
 use mdbook_open_on_gh::OpenOn;
+use mdbook_toc::Toc;
 
 // Create clap subcommand arguments
 pub fn make_subcommand<'a, 'b>() -> App<'a, 'b> {
