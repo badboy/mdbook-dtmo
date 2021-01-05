@@ -2,9 +2,10 @@ use crate::{get_book_dir, open};
 use clap::{App, ArgMatches, SubCommand};
 use mdbook::errors::Result;
 use mdbook::MDBook;
+
 use mdbook_mermaid::Mermaid;
-use mdbook_toc::Toc;
 use mdbook_open_on_gh::OpenOn;
+use mdbook_toc::Toc;
 
 // Create clap subcommand arguments
 pub fn make_subcommand<'a, 'b>() -> App<'a, 'b> {

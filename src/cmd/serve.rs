@@ -8,14 +8,15 @@ use mdbook::errors::*;
 use mdbook::utils;
 use mdbook::utils::fs::get_404_output_file;
 use mdbook::MDBook;
-use mdbook_mermaid::Mermaid;
-use mdbook_toc::Toc;
-use mdbook_open_on_gh::OpenOn;
 use std::net::{SocketAddr, ToSocketAddrs};
 use std::path::PathBuf;
 use tokio::sync::broadcast;
 use warp::ws::Message;
 use warp::Filter;
+
+use mdbook_mermaid::Mermaid;
+use mdbook_open_on_gh::OpenOn;
+use mdbook_toc::Toc;
 
 /// The HTTP endpoint for the websocket used to trigger reloads when a file changes.
 const LIVE_RELOAD_ENDPOINT: &str = "__livereload";
