@@ -855,9 +855,9 @@ dependencies = [
 
 [[package]]
 name = "mdbook-mermaid"
-version = "0.6.1"
+version = "0.7.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e42a1079cbc81304854141be1a877f41aa3b211abf02f098fae682fa04391d8a"
+checksum = "3fbe77ff77fae89e0f617c6e999ebd3e21885ab53ce40dbeebc1fa75b324ea6d"
 dependencies = [
  "clap",
  "env_logger",
@@ -871,9 +871,9 @@ dependencies = [
 
 [[package]]
 name = "mdbook-open-on-gh"
-version = "1.3.1"
+version = "1.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "676f4fc0bf37f30ea748beb10c5b3f4eca048926637396d7698cbcda62ffe269"
+checksum = "249eba0377cf5fe3537b4c5ed012156ec976aaac6770b7b22272b02947d94289"
 dependencies = [
  "clap",
  "env_logger",
@@ -885,9 +885,9 @@ dependencies = [
 
 [[package]]
 name = "mdbook-toc"
-version = "0.5.1"
+version = "0.6.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "5b7b9c4adeaeb7d32dcd6a800fbdb2c6f32ec91117a435205f26a2e2b6cf7a3d"
+checksum = "42b43527dffbb895f4b16e339f9b8eaf77fdc9058fda83173b23542f5a14da45"
 dependencies = [
  "clap",
  "env_logger",
@@ -896,6 +896,7 @@ dependencies = [
  "pulldown-cmark",
  "pulldown-cmark-to-cmark",
  "serde_json",
+ "toml",
 ]
 
 [[package]]
