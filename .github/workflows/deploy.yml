@@ -6,6 +6,9 @@ on:
     tags:
       - "*"
 
+permissions:
+  contents: write
+
 env:
   CRATE_NAME: mdbook-dtmo
 
