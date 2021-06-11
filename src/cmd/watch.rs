@@ -45,9 +45,6 @@ pub fn execute(args: &ArgMatches) -> Result<()> {
     update_config(&mut book);
 
     if args.is_present("open") {
-        book.with_preprocessor(Mermaid);
-        book.with_preprocessor(Toc);
-        book.with_preprocessor(OpenOn);
         book.build()?;
         open(book.build_dir_for("html").join("index.html"));
     }
@@ -68,7 +65,7 @@ pub fn execute(args: &ArgMatches) -> Result<()> {
     Ok(())
 }
 
-fn remove_ignored_files(book_root: &PathBuf, paths: &[PathBuf]) -> Vec<PathBuf> {
+fn remove_ignored_files(book_root: &Path, paths: &[PathBuf]) -> Vec<PathBuf> {
     if paths.is_empty() {
         return vec![];
     }
@@ -91,7 +88,7 @@ fn remove_ignored_files(book_root: &PathBuf, paths: &[PathBuf]) -> Vec<PathBuf> 
     }
 }
 
-fn find_gitignore(book_root: &PathBuf) -> Option<PathBuf> {
+fn find_gitignore(book_root: &Path) -> Option<PathBuf> {
     book_root
         .ancestors()
         .map(|p| p.join(".gitignore"))

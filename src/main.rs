@@ -15,7 +15,6 @@ use std::path::{Path, PathBuf};
 
 mod cmd;
 
-const NAME: &str = "mdbook-dtmo";
 const VERSION: &str = concat!("v", crate_version!());
 
 fn main() {
@@ -23,8 +22,7 @@ fn main() {
 
     // Create a list of valid arguments and sub-commands
     let long_version = format!("{} (based on mdbook {})", VERSION, mdbook::MDBOOK_VERSION);
-    let app = App::new(NAME)
-        .about("Creates a book from markdown files with added plugins")
+    let app = App::new(crate_name!())
         .about(crate_description!())
         .author("Jan-Erik Rediger <jrediger@mozilla.com>")
         .version(VERSION)
@@ -34,7 +32,7 @@ fn main() {
         .setting(AppSettings::ColoredHelp)
         .after_help(
             "For more information about a specific command, try `mdbook-dtmo <command> --help`\n\
-             The source code for mdBook is available at: https://github.com/badboy/mdbook-dtmo",
+             The source code for mdbook-dtmo is available at: https://github.com/badboy/mdbook-dtmo",
         )
         .subcommand(cmd::init::make_subcommand())
         .subcommand(cmd::build::make_subcommand())

@@ -45,7 +45,7 @@ warp = { version = "0.2.2", default-features = false, features = ["websocket"], 
 # Search feature
 elasticlunr-rs = { version = "2.3", optional = true, default-features = false }
 ammonia = { version = "3", optional = true }
-mdbook = "0.4.5"
+mdbook = "0.4.10"
 
 [dev-dependencies]
 select = "0.5"
