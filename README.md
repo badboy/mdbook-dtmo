@@ -34,4 +34,4 @@ mdbook-dtmo path/to/firefox-data-docs
 ## License
 
 MPL. See [LICENSE](LICENSE).  
-Copyright (c) 2018-2020 Jan-Erik Rediger <janerik@fnordig.de>
+Copyright (c) 2018-2021 Jan-Erik Rediger <janerik@fnordig.de>
