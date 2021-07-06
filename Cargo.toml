@@ -30,7 +30,7 @@ tempfile = "3.0"
 toml = "0.5.1"
 
 mdbook-mermaid = "0.7.0"
-mdbook-toc = "0.6.0"
+mdbook-toc = "0.7.0"
 mdbook-open-on-gh = "1.4.0"
 
 # Watch feature
