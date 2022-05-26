@@ -2,9 +2,6 @@ name: Tests
 
 on: [push, pull_request]
 
-env:
-  RUSTFLAGS: -Dwarnings
-
 jobs:
   build_and_test:
     name: Build and test
