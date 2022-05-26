@@ -21,7 +21,10 @@ jobs:
       uses: actions-rs/toolchain@v1
       with:
         toolchain: ${{ matrix.rust }}
+        profile: minimal
         override: true
+
+    - uses: Swatinem/rust-cache@v1
 
     - name: check
       uses: actions-rs/cargo@v1
@@ -45,6 +48,8 @@ jobs:
         toolchain: stable
         components: rustfmt, clippy
         override: true
+
+    - uses: Swatinem/rust-cache@v1
 
     - name: fmt
       run: cargo fmt --all -- --check
