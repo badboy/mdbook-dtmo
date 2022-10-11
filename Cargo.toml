@@ -1,6 +1,6 @@
 [package]
 name = "mdbook-dtmo"
-version = "0.12.0"
+version = "0.13.0"
 authors = ["Jan-Erik Rediger <janerik@fnordig.de>"]
 description = "Creates a book from markdown files with added plugins"
 license = "MPL-2.0"
